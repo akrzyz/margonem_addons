@@ -39,8 +39,8 @@ colision_mgr.start = function()
         var x = (j.clientX - k.left) >> 5,
             y = (j.clientY - k.top) >> 5;
         message("add colision at:" + x + "," + y);
-        this.add_colision(x,y);
-        this.display_colision_at(x,y);
+        colision_mgr.add_colision(x,y);
+        colision_mgr.display_colision_at(x,y);
     };
 }
 
