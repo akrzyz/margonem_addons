@@ -135,7 +135,34 @@ oval.start()
 
 //--- config ---
 oval.config = {}
+
+oval.config.options = {}
+oval.config.options['hero']    = {'color':'','display':false}
+oval.config.options['npc']     = {'color':'','display':false}
+oval.config.options['monster'] = {'color':'','display':false}
+oval.config.options['friend']  = {'color':'','display':false}
+oval.config.options['enemy']   = {'color':'','display':false}
+oval.config.options['clan']    = {'color':'','display':false}
+
 oval.config.display = function()
 {
-    mAllert("config",2)
+    var display = $("<div>")
+    for(var i in this.options)
+    {
+        message(i)
+        display.append(this.createCb(i, this.options[i].display))
+        display.append(this.createColorPicker(i, this.options[i].color))
+        display.append(String(i))
+        display.append("<br>")
+    }
+    mAlert(display,2)
 }
+oval.config.createColorPicker = function(name,value)
+{
+    return $("<input type='color' name='"+name+"' value='"+value+"' />")
+}
+oval.config.createCb = function(name,checked)
+{
+    return $("<input>",{'type':"checkbox", 'name':name, 'checked':checked})
+}
+
