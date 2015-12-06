@@ -1,3 +1,5 @@
+(function(){ //namespace
+
 var wrapp = function(functions)
 {
     return function()
@@ -24,35 +26,55 @@ Oval.blure = function($source)
 Oval.update = function($source)
 {
     this.css({left: parseInt($source.css("left")) - 3, top: parseInt($source.css("top")) + 32})
+
+}
+//bo nikt nie lubi dzielenia..
+Oval.updateWithSize = function($source)
+{
+    var xOffset = parseInt(($source.width() - 38)/2)
+    var yOffset = parseInt($source.height() - 16)
+    this.css({left: parseInt($source.css("left")) + xOffset, top: parseInt($source.css("top")) + yOffset})
 }
 
 //--- oval ---
 var oval = {}
 //--- npc ---
 oval.npc = {}
+oval.npc.isEnabled = function()
+{
+    var opt = ['npc','monster','object']
+    for(var i in opt)
+        if(oval.config.options[opt[i]].display)
+            return true
+    return false
+}
 oval.npc.color = function(npc)
 {
     if(npc.lvl)
     {
         if(npc.type == 2 || npc.type == 3)
-            return oval.config.options['monster'].color
-        return oval.config.options['npc'].color
+            return oval.config.color('monster')
+        return oval.config.color('npc')
     }
-    return oval.config.options['object'].color
+    return oval.config.color('object')
 }
 oval.npc.create = function(npc)
 {
-    return Oval.create(this.color(npc))
+    var color = this.color(npc)
+    return (color ? Oval.create(color) : null)
 }
 oval.npc.append = function(npcs)
 {
     for(var i in npcs)
     {
-        var $npc = $("#npc"+i)
         var $oval = this.create(npcs[i])
-        npcs[i].$oval = $oval
-        Oval.blure.call($oval, $npc)
-        Oval.update.call($oval, $npc)
+        if($oval)
+        {
+            var $npc = $("#npc"+i)
+            npcs[i].$oval = $oval
+            Oval.blure.call($oval, $npc)
+            Oval.updateWithSize.call($oval, $npc)
+        }
     }
 }
 oval.npc.remove = function(npcs)
@@ -61,26 +83,39 @@ oval.npc.remove = function(npcs)
         if (g.npc[i] && g.npc[i].$oval)
             g.npc[i].$oval.remove()
 }
-
+oval.npc.run = function()
+{
+    if(this.isEnabled())
+        newNpc = wrapp([this.remove, newNpc, this.append.bind(this)])
+}
 //--- other ---
 oval.other = {}
+oval.other.isEnabled = function()
+{
+    var opt = ['friend','enemy','clan','clan_fr','clan_en','other']
+    for(var i in opt)
+        if(oval.config.options[opt[i]].display)
+            return true
+    return false
+}
 oval.other.color = function(other)
 {
     if('fr' == other.relation)
-        return oval.config.options['friend'].color
+        return oval.config.color('friend')
     if('en' == other.relation)
-        return oval.config.options['enemy'].color
+        return oval.config.color('enemy')
     if('cl' == other.relation)
-        return oval.config.options['clan'].color
+        return oval.config.color('clan')
     if(['cl-fr','fr-fr'].indexOf(other.relation) > -1)
-        return oval.config.options['clan_fr'].color
+        return oval.config.color('clan_fr')
     if(['cl-en','fr-en'].indexOf(other.relation) > -1)
-        return oval.config.options['clan_en'].color
-    return oval.config.options['other'].color
+        return oval.config.color('clan_en')
+    return oval.config.color('other')
 }
 oval.other.create = function(other)
 {
-    return Oval.create(this.color(other))
+    var color = this.color(other)
+    return (color ? Oval.create(color) : null)
 }
 oval.other.append = function(others)
 {
@@ -88,40 +123,102 @@ oval.other.append = function(others)
     {
         if(g.other[i] && !g.other[i].$oval)
         {
-            var $other = $("#other"+i)
             var $oval = this.create(others[i])
-            g.other[i].$oval = $oval
-            Oval.blure.call($oval, $other)
-            ObserverFactory.create($other,$oval)
+            if($oval)
+            {
+                var $other = $("#other"+i)
+                g.other[i].$oval = $oval
+                Oval.blure.call($oval, $other)
+                ObserverFactory.create($other,$oval)
+            }
         }
     }
 }
 oval.other.remove = function(others)
 {
     for(var i in others)
-    {
         if(others[i].del && g.other[i] && g.other[i].$oval)
              g.other[i].$oval.remove()
+}
+oval.other.run = function()
+{
+    if(this.isEnabled())
+        newOther = wrapp([this.remove, newOther, this.append.bind(this)])
+}
+//--- item ---
+oval.item = {}
+oval.item.isEnabled = function()
+{
+    return oval.config.options['item'].display
+}
+oval.item.color = function()
+{
+    return oval.config.color('item')
+}
+oval.item.create = function(other)
+{
+    var color = this.color(other)
+    return (color ? Oval.create(color) : null)
+}
+oval.item.append = function(items)
+{
+    for(var i in items)
+    {
+        if(g.item[i] && g.item[i].loc == "m" && !g.item[i].$oval)
+        {
+            var $oval = this.create(items[i])
+            if($oval)
+            {
+                var $item = $("#item"+i)
+                g.item[i].$oval = $oval
+                Oval.blure.call($oval, $item)
+                Oval.updateWithSize.call($oval, $item)
+            }
+        }
     }
+}
+oval.item.remove = function(items)
+{
+    for(var i in items)
+        if(g.item[i] && g.item[i].loc != "a" && g.item[i].$oval)
+             g.item[i].$oval.remove()
+}
+oval.item.run = function()
+{
+    if(this.isEnabled())
+        newItem = wrapp([this.remove, newItem, this.append.bind(this)])
 }
 //--- hero ---
 oval.hero = {}
+oval.hero.isEnabled = function()
+{
+    return oval.config.options['hero'].display
+}
 oval.hero.color = function()
 {
-    return oval.config.options['hero'].color
+    return oval.config.color('hero')
 }
 oval.hero.create = function(hero)
 {
-    return Oval.create(this.color(hero))
+    var color = this.color(hero)
+    return (color ? Oval.create(color) : null)
 }
 oval.hero.append = function()
 {
-    var $hero = $("#hero")
     var $oval = this.create(hero)
-    Oval.blure.call($oval, $hero)
-    ObserverFactory.create($hero,$oval)
+    if($oval)
+    {
+        var $hero = $("#hero")
+        hero.$oval = $oval
+        Oval.blure.call($oval, $hero)
+        ObserverFactory.create($hero,$oval)
+    }
 }
-
+oval.hero.run = function()
+{
+    if(this.isEnabled())
+        this.append()
+}
 //--- observers ---
 var ObserverFactory = {}
 ObserverFactory.config = {attributes: true, attributeFilter:['style']}
@@ -149,7 +246,14 @@ oval.config.options['enemy']   = {color:'#FF0000',display:true}  //Red
 oval.config.options['clan']    = {color:'#FFD700',display:true}  //Gold
 oval.config.options['clan_fr'] = {color:'#B8860B',display:true}  //DarkGoldenRod
 oval.config.options['clan_en'] = {color:'#B22222',display:true}  //FireBrick
-oval.config.options['other']   = {color:'#D3D3D3',display:true}  //lightgray
+oval.config.options['other']   = {color:'#D3D3D3',display:true}  //LightGray
+oval.config.options['item']    = {color:'#DA70D6',display:false} //Orchid
+
+oval.config.color = function(option)
+{
+    var opt = this.options[option]
+    return (opt && opt.display ? opt.color : null)
+}
 
 oval.config.display = function()
 {
@@ -226,13 +330,15 @@ oval.config.reset = function()
     if(typeof localStorage != 'undefined' && localStorage.oval_options)
         delete localStorage.oval_options
 }
+oval.config.run = function(){}
 //--- start ---
-oval.start = function()
+var start = function()
 {
     oval.config.load()
-    oval.hero.append()
-    newNpc = wrapp([oval.npc.remove, newNpc, oval.npc.append.bind(oval.npc)])
-    newOther = wrapp([oval.other.remove, newOther, oval.other.append.bind(oval.other)])
+    for(var module in oval)
+        oval[module].run()
+    $("#pvpmode").dblclick(oval.config.display.bind(oval.config))
 }
-oval.start()
+start()
 
+})() //namespace
