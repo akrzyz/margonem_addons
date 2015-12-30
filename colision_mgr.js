@@ -32,7 +32,6 @@ colision_mgr.show_colisions = function()
 colision_mgr.start = function()
 {
     this.oldMClick = hero.mClick;	
-    this.show_colisions();
     hero.mClick = function (j)
     {
         var k = $("#ground").offset();
@@ -57,5 +56,14 @@ colision_mgr.stop = function ()
 colision_mgr.add_water = function(x,y,depth)
 {
     map.water[x+256*y]=depth;
+}
+
+{
+var menu_str = $("<div>")
+    .append($("<div tip='show colisions'>show</div>").click(colision_mgr.show_colisions.bind(colision_mgr)))
+    .append($("<div>start<div>").click(colision_mgr.start.bind(colision_mgr)))
+    .append($("<div>stop<div>").click(colision_mgr.stop.bind(colision_mgr)))
+//rejestracja w menu
+$.getScript("http://addons2.margonem.pl/get/1/1689verified.js",function(){aldiMenu.add(menu_str)});                        
 }
 
