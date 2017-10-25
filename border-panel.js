@@ -10,12 +10,18 @@ var panelDir='-';
 var mapSizeX = 512;
 var chatImg = [$('#chat').css('background'),'url("http://img266.imageshack.us/img266/395/chatpanel3.gif") repeat scroll 0 0 transparent'];
 
+bindElementsToPanel = function(elements)
+{
+    var panel = $("panel")
+    for(var element in elements)
+        panel.append(element.css({left : element.position().left - panel.position().left}))
+}
 
 panelToggle = function(){
-	
+
 	if(panelDir == '+'){panelDir='-'; mapSizeX=512;	}
 	else{panelDir='+';	mapSizeX=786; }
-	
+
 	$('#stats').animate({"left": panelDir+"=300px"}, "slow");
 	$('#panel').animate({"left": panelDir+"=300px"}, "slow");
 	$('#base3').animate({"left": panelDir+"=300px"}, "slow");
@@ -29,33 +35,33 @@ panelToggle = function(){
 	$('#corners img').slice(4,8).animate({"left": panelDir+"=274px"}, "slow");
 	$('#corners img').slice(6,8).toggle();
 	if(panelDir == '-')
-	{		
+	{
 		$('#chatscrollbar').animate({"left": (g.chat.state != 3) ? (panelDir+"=273px") : ("-=0px")}, "slow",function()
-		{	
-			map.resizeView(mapSizeX,512 - $("#chat").height()+4 ); 
+		{
+			map.resizeView(mapSizeX,512 - $("#chat").height()+4 );
 			if(g.chat.state != 3)
 			{$('#chat').css('width',mapSizeX+'px').css('background',chatImg[0]); }
 			$('#dialog').width(mapSizeX);
 			$('#dazed').width(mapSizeX);
 			if($('#mailnotifier').html()!=''){$('#mailnotifier').css('top','485px').css('left','440px');}
-			
+
 		});
 		$('#panelToggle').css('background-position','right top');
 	}else
 	{
 		if(g.chat.state != 3)
 		{
-			$('#chatscrollbar').animate({"left": panelDir+"=273px"}, "slow");		
+			$('#chatscrollbar').animate({"left": panelDir+"=273px"}, "slow");
 			$('#chat').css('width',mapSizeX+'px').css('background',chatImg[1]);
 		}
-		map.resizeView(mapSizeX,512 - $("#chat").height()+4 ); 		
+		map.resizeView(mapSizeX,512 - $("#chat").height()+4 );
 		$('#panelToggle').css('background-position','left top');
-		$('#dialog').width(mapSizeX);	
+		$('#dialog').width(mapSizeX);
 		$('#dazed').width(mapSizeX);
 		if($('#mailnotifier').html()!=''){$('#mailnotifier').css('top','5px').css('left','730px');}
-						
+
 	}
-	
+
 	var data = new Date();
 	data.setTime(data.getTime()+30758400000);
 	setCookie('AlPanelTg',panelDir, data);
@@ -64,7 +70,7 @@ panelToggle = function(){
 	//zapobieganie czarnemu paskowi na dole je�eli jest zwin�ty chat przy starcie.
 	if($('#chat').css('display')=='none'){$('#chat').height(0);}
 	//nie wiem po co to ale potrzebne :D
-	if($('#chat').height()=='64'){$('#chat').height(0);}	
+	if($('#chat').height()=='64'){$('#chat').height(0);}
 	//start z ciastek
 	if( getCookie('AlPanelTg') == '+' ){panelDir='-'; panelToggle();}
 /************************************************************************************/
@@ -101,16 +107,16 @@ showChat=function(a) {
         }
         break;
     case 3:
-		$('#chat').css('background',chatImg[0]); 
+		$('#chat').css('background',chatImg[0]);
         makeChatLeft();
-        $("#mailnotifier").fadeTo(100, 1);		
+        $("#mailnotifier").fadeTo(100, 1);
         break;
 	case 4:
 		$("#chat").height(320).show();
 		$("#chatMoveHandler").css({
             display: "block"
         });
-		if(mapSizeX == 512)		
+		if(mapSizeX == 512)
 			$("#chat").css( {background:'url("http://img17.imageshack.us/img17/6879/chatpanel2.png") repeat scroll 0 0 transparent'} );
 		break;
 	case 5:
@@ -118,7 +124,7 @@ showChat=function(a) {
 		$("#chatMoveHandler").css({
             display: "block"
         });
-		if(mapSizeX == 512)	
+		if(mapSizeX == 512)
 			$("#chat").css( {background:'url("http://img17.imageshack.us/img17/6879/chatpanel2.png") repeat scroll 0 0 transparent'} );
 		break;
     case 0:
@@ -128,9 +134,9 @@ showChat=function(a) {
 			map.resizeView(mapSizeX,512 - $("#chat").height()+4 );
 		}else
 		{
-			$('#chatscrollbar').animate({"left": panelDir+"=273px"}, "fast");		
-			$('#chat').css('width',mapSizeX+'px').css('background',chatImg[1]); 
-		}		        
+			$('#chatscrollbar').animate({"left": panelDir+"=273px"}, "fast");
+			$('#chat').css('width',mapSizeX+'px').css('background',chatImg[1]);
+		}
         $("#chat").hide().height(0);
         $("#mailnotifier").fadeTo(100, 1);
         $("#youtube").height(512);
@@ -156,7 +162,7 @@ toggleChat = function() {
 	else if(g.chat.state==6){g.chat.state=3;}
 	*/
     showChat(g.chat.state);
-	
+
 }
 
 
