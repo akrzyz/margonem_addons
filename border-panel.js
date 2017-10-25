@@ -12,7 +12,7 @@ var chatImg = [$('#chat').css('background'),'url("http://img266.imageshack.us/im
 
 bindElementsToPanel = function(elements)
 {
-    var panel = $("panel")
+    var panel = $("#panel")
     for(var i in elements)
         panel.append(elements[i].css({left : elements[i].position().left - panel.position().left}))
 }
