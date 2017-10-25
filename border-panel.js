@@ -14,10 +14,14 @@ bindElementsToPanel = function(elements)
 {
     var panel = $("#panel")
     for(var i in elements)
-        panel.append(elements[i].css({left : elements[i].position().left - panel.position().left}))
+    {
+        var panel_position = panel.position()
+        var element_position = elements[i].position()
+        panel.append(elements[i].css({left : element_position.left - panel_position.left, top : element_position.top - panel_position.top}))
+    }
 }
 
-bindElementsToPanel([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2")])
+bindElementsToPanel([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2"), $("#helpbut"), $("#premiumbut"), $("#logoutbut")])
 
 panelToggle = function(){
 
@@ -25,13 +29,6 @@ panelToggle = function(){
 	else{panelDir='+';	mapSizeX=786; }
 
 	$('#panel').animate({"left": panelDir+"=300px"}, "slow");
-//	$('#stats').animate({"left": panelDir+"=300px"}, "slow");
-//	$('#base3').animate({"left": panelDir+"=300px"}, "slow");
-//	$('#gold').animate({"left": panelDir+"=300px"}, "slow");
-//	$('#exp1').animate({"left": panelDir+"=300px"}, "slow");
-//	$('#exp2').animate({"left": panelDir+"=300px"}, "slow");
-//	$('#life1').animate({"left": panelDir+"=300px"}, "slow");
-//	$('#life2').animate({"left": panelDir+"=300px"}, "slow");
 	$('#leorn1').animate({"left": panelDir+"=274px"}, "slow").toggle();
 	$('#leorn2').animate({"left": panelDir+"=274px"}, "slow").toggle();
 	$('#corners img').slice(4,8).animate({"left": panelDir+"=274px"}, "slow");
