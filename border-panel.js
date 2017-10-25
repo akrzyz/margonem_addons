@@ -17,19 +17,21 @@ bindElementsToPanel = function(elements)
         panel.append(elements[i].css({left : elements[i].position().left - panel.position().left}))
 }
 
+bindElementsToPanel([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2"), $("#gold")])
+
 panelToggle = function(){
 
 	if(panelDir == '+'){panelDir='-'; mapSizeX=512;	}
 	else{panelDir='+';	mapSizeX=786; }
 
-	$('#stats').animate({"left": panelDir+"=300px"}, "slow");
 	$('#panel').animate({"left": panelDir+"=300px"}, "slow");
-	$('#base3').animate({"left": panelDir+"=300px"}, "slow");
-	$('#gold').animate({"left": panelDir+"=300px"}, "slow");
-	$('#exp1').animate({"left": panelDir+"=300px"}, "slow");
-	$('#exp2').animate({"left": panelDir+"=300px"}, "slow");
-	$('#life1').animate({"left": panelDir+"=300px"}, "slow");
-	$('#life2').animate({"left": panelDir+"=300px"}, "slow");
+//	$('#stats').animate({"left": panelDir+"=300px"}, "slow");
+//	$('#base3').animate({"left": panelDir+"=300px"}, "slow");
+//	$('#gold').animate({"left": panelDir+"=300px"}, "slow");
+//	$('#exp1').animate({"left": panelDir+"=300px"}, "slow");
+//	$('#exp2').animate({"left": panelDir+"=300px"}, "slow");
+//	$('#life1').animate({"left": panelDir+"=300px"}, "slow");
+//	$('#life2').animate({"left": panelDir+"=300px"}, "slow");
 	$('#leorn1').animate({"left": panelDir+"=274px"}, "slow").toggle();
 	$('#leorn2').animate({"left": panelDir+"=274px"}, "slow").toggle();
 	$('#corners img').slice(4,8).animate({"left": panelDir+"=274px"}, "slow");
