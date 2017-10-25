@@ -10,18 +10,18 @@ var panelDir='-';
 var mapSizeX = 512;
 var chatImg = [$('#chat').css('background'),'url("http://img266.imageshack.us/img266/395/chatpanel3.gif") repeat scroll 0 0 transparent'];
 
-bindElementsToPanel = function(elements)
+bindTo = function(elements, parent)
 {
-    var panel = $("#panel")
     for(var i in elements)
     {
-        var panel_position = panel.position()
+        var parent_position = parent.position()
         var element_position = elements[i].position()
-        panel.append(elements[i].css({left : element_position.left - panel_position.left, top : element_position.top - panel_position.top}))
+        parent.append(elements[i].css({left : element_position.left - parent_position.left, top : element_position.top - parent_position.top}))
     }
 }
 
-bindElementsToPanel([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2"), $("#helpbut"), $("#premiumbut"), $("#logoutbut")])
+bindTo([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2"), $("#helpbut"), $("#premiumbut"), $("#logoutbut")], $("#panel"))
+bindTo([$("#pvpmode"), $("#bchat"), $("#botloc"), $("#lagmeter")], $("#bottombar"))
 
 panelToggle = function(){
 
