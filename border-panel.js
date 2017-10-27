@@ -1,6 +1,6 @@
 $('<img src="http://img413.imageshack.us/img413/7572/botompanel5.gif" style="z-index:299; position: absolute; bottom: 0px; right: 14px;">').appendTo('#centerbox')
 //guzik do togglowania
-$('<div id="panelToggle" tip="panel toggle"></div>').css({background:"url('http://img405.imageshack.us/img405/9462/paneltgico4.gif') 13px 0",height:"19px",width:"13px",position:"absolute",bottom:"6px",right:"172px"}).css('z-index','300'
+$('<div id="panelToggle" tip="panel toggle"></div>').css({background:"url('http://img405.imageshack.us/img405/9462/paneltgico4.gif') 13px 0",height:"19px",width:"13px",position:"absolute",bottom:"6px",right:"172px"}).css('z-index','300')
 .appendTo('#centerbox')
 .click(function(){panelToggle()})
 .mouseover(function(){$(this).css('opacity','0.6')})
