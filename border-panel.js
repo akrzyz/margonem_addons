@@ -32,7 +32,7 @@ panelToggle = function(){
 	$('#leorn1').animate({"left": panelDir+"=274px"}, "slow").toggle()
 	$('#leorn2').animate({"left": panelDir+"=274px"}, "slow").toggle()
 	$('#corners img').slice(4,8).animate({"left": panelDir+"=274px"}, "slow")
-	$('#corners img').slice(6,8).animate({"left": panelDir+"=274px"}, "slow")
+//	$('#corners img').slice(6,8).animate({"left": panelDir+"=274px"}, "slow")
 
 	if(panelDir == '-')
 	{
