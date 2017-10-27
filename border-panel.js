@@ -62,9 +62,7 @@ panelToggle = function(){
 
 	}
 
-	var data = new Date()
-	data.setTime(data.getTime()+30758400000)
-	setCookie('AlPanelTg',panelDir, data)
+	localStorage.panelDirection = panelDir
 }
 
 	//zapobieganie czarnemu paskowi na dole je�eli jest zwin�ty chat przy starcie.
@@ -72,7 +70,7 @@ panelToggle = function(){
 	//nie wiem po co to ale potrzebne :D
 	if($('#chat').height()=='64'){$('#chat').height(0);}
 	//start z ciastek
-	if( getCookie('AlPanelTg') == '+' ){panelDir='-'; panelToggle();}
+	if( localStorage.panelDirection == '+' ){panelDir='-'; panelToggle();}
 /************************************************************************************/
 showChat=function(a) {
     if (a == 3 && $(window).width() < 1068) {
