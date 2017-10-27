@@ -1,14 +1,14 @@
-$('<img src="http://img413.imageshack.us/img413/7572/botompanel5.gif" style="z-index:299; position: absolute; bottom: 0px; right: 14px;">').appendTo('#centerbox');
+$('<img src="http://img413.imageshack.us/img413/7572/botompanel5.gif" style="z-index:299; position: absolute; bottom: 0px; right: 14px;">').appendTo('#centerbox')
 //guzik do togglowania
-$('<div id="panelToggle" tip="panel toggle"></div>').css({background:"url('http://img405.imageshack.us/img405/9462/paneltgico4.gif') 13px 0",height:"19px",width:"13px",position:"absolute",bottom:"6px",right:"172px"}).css('z-index','300')
+$('<div id="panelToggle" tip="panel toggle"></div>').css({background:"url('http://img405.imageshack.us/img405/9462/paneltgico4.gif') 13px 0",height:"19px",width:"13px",position:"absolute",bottom:"6px",right:"172px"}).css('z-index','300'
 .appendTo('#centerbox')
 .click(function(){panelToggle()})
 .mouseover(function(){$(this).css('opacity','0.6')})
-.mouseout(function(){$(this).css('opacity','1')});
+.mouseout(function(){$(this).css('opacity','1')})
 
-var panelDir='-';
-var mapSizeX = 512;
-var chatImg = [$('#chat').css('background'),'url("http://img266.imageshack.us/img266/395/chatpanel3.gif") repeat scroll 0 0 transparent'];
+var panelDir='-'
+var mapSizeX = 512
+var chatImg = [$('#chat').css('background'),'url("http://img266.imageshack.us/img266/395/chatpanel3.gif") repeat scroll 0 0 transparent']
 
 bindTo = function(elements, parent)
 {
@@ -28,42 +28,43 @@ panelToggle = function(){
 	if(panelDir == '+'){panelDir='-'; mapSizeX=512;	}
 	else{panelDir='+';	mapSizeX=786; }
 
-	$('#panel').animate({"left": panelDir+"=300px"}, "slow");
-	$('#leorn1').animate({"left": panelDir+"=274px"}, "slow").toggle();
-	$('#leorn2').animate({"left": panelDir+"=274px"}, "slow").toggle();
-	$('#corners img').slice(4,8).animate({"left": panelDir+"=274px"}, "slow");
-	$('#corners img').slice(6,8).toggle();
+	$('#panel').animate({"left": panelDir+"=300px"}, "slow")
+	$('#leorn1').animate({"left": panelDir+"=274px"}, "slow").toggle()
+	$('#leorn2').animate({"left": panelDir+"=274px"}, "slow").toggle()
+	$('#corners img').slice(4,8).animate({"left": panelDir+"=274px"}, "slow")
+	$('#corners img').slice(6,8).animate({"left": panelDir+"=274px"}, "slow")
+
 	if(panelDir == '-')
 	{
 		$('#chatscrollbar').animate({"left": (g.chat.state != 3) ? (panelDir+"=273px") : ("-=0px")}, "slow",function()
 		{
-			map.resizeView(mapSizeX,512 - $("#chat").height()+4 );
+			map.resizeView(mapSizeX,512 - $("#chat").height()+4 )
 			if(g.chat.state != 3)
 			{$('#chat').css('width',mapSizeX+'px').css('background',chatImg[0]); }
-			$('#dialog').width(mapSizeX);
-			$('#dazed').width(mapSizeX);
+			$('#dialog').width(mapSizeX)
+			$('#dazed').width(mapSizeX)
 			if($('#mailnotifier').html()!=''){$('#mailnotifier').css('top','485px').css('left','440px');}
 
-		});
-		$('#panelToggle').css('background-position','right top');
+		})
+		$('#panelToggle').css('background-position','right top')
 	}else
 	{
 		if(g.chat.state != 3)
 		{
-			$('#chatscrollbar').animate({"left": panelDir+"=273px"}, "slow");
-			$('#chat').css('width',mapSizeX+'px').css('background',chatImg[1]);
+			$('#chatscrollbar').animate({"left": panelDir+"=273px"}, "slow")
+			$('#chat').css('width',mapSizeX+'px').css('background',chatImg[1])
 		}
-		map.resizeView(mapSizeX,512 - $("#chat").height()+4 );
-		$('#panelToggle').css('background-position','left top');
-		$('#dialog').width(mapSizeX);
-		$('#dazed').width(mapSizeX);
+		map.resizeView(mapSizeX,512 - $("#chat").height()+4 )
+		$('#panelToggle').css('background-position','left top')
+		$('#dialog').width(mapSizeX)
+		$('#dazed').width(mapSizeX)
 		if($('#mailnotifier').html()!=''){$('#mailnotifier').css('top','5px').css('left','730px');}
 
 	}
 
-	var data = new Date();
-	data.setTime(data.getTime()+30758400000);
-	setCookie('AlPanelTg',panelDir, data);
+	var data = new Date()
+	data.setTime(data.getTime()+30758400000)
+	setCookie('AlPanelTg',panelDir, data)
 }
 
 	//zapobieganie czarnemu paskowi na dole je�eli jest zwin�ty chat przy starcie.
