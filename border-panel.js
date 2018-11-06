@@ -20,7 +20,7 @@ bindTo = function(elements, parent)
     }
 }
 
-bindTo([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2"), $("#helpbut"), $("#premiumbut"), $("#logoutbut")], $("#panel"))
+bindTo([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2"), $("#premiumbut"), $("#logoutbut")], $("#panel"))
 bindTo([$("#pvpmode"), $("#bchat"), $("#botloc"), $("#lagmeter")], $("#bottombar"))
 
 panelToggle = function(){
