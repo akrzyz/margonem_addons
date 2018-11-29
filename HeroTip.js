@@ -1,10 +1,9 @@
 /* hero.tip */
 heroTipFunction=function()
 {
-	var c='<ALIGN=CENTER>';
-	var c = "<b><font color='white'>" + hero.nick + "</font></b>";
-
-    c += "<div ALIGN=CENTER>Lvl: " + hero.lvl + hero.prof+"</div>";   
+	var tip = "<b><font color='white'>" + hero.nick + "</font></b>";
+    tip += hero.clan ? "<center>[" + hero.clan.name + "]</center>" : ""
+    tip += "<div ALIGN=CENTER>Lvl: " + hero.lvl + hero.prof+"</div>";
 
 	if (hero.uprawnienia )
 	{
@@ -15,12 +14,12 @@ heroTipFunction=function()
 		else { d = 3;}
              }
              }
-		c += "<i><font color='red'>" + g.names.ranks[d] + "</font></i>"
+		tip += "<i><font color='red'>" + g.names.ranks[d] + "</font></i>"
     }
-	
-    return c
+
+    return tip
 }
 zmienOpis=function(){
 $("#hero").attr('tip',heroTipFunction());
 }
-g.loadQueue.push({fun:zmienOpis,data:''}) 
+g.loadQueue.push({fun:zmienOpis,data:''})
