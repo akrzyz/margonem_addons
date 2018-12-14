@@ -20,6 +20,16 @@ bindTo = function(elements, parent)
     }
 }
 
+var GAME_BOX = $("<div id='GAME_BOX'/>").css({display:"flex", height:"100vh"})
+var CHAT = $("<div id='GAME_CHAT'>CHAT</div>").css({display:"flex", width:"300px", backgroundColor:"green"})
+var GAME = $("<div id='GAME_BODY'>GAME</div>").css({display:"flex", flex:1, backgroundColor:"blue"})
+var PANEL = $("<div id='GAME_PANEL'>PANEL</div>").css({display:"flex", width:"300px", backgroundColor:"red"})
+GAME_BOX.append(CHAT).append(GAME).append(PANEL).appendTo("body")
+//$("#chat").appendTo("#GAME_CHAT")
+//$("#panel").appendTo("#GAME_PANEL")
+//$("#centerbox").appendTo("#GAME_BODY")
+//$("#centerbox").appendTo("#GAME_BODY")
+
 bindTo([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2"), $("#premiumbut"), $("#logoutbut")], $("#panel"))
 bindTo([$("#pvpmode"), $("#bchat"), $("#botloc"), $("#lagmeter")], $("#bottombar"))
 
