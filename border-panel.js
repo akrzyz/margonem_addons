@@ -20,31 +20,39 @@ bindTo = function(elements, parent)
     }
 }
 
+function()
+{
 var GAME_BOX = $("<div id='GAME_BOX'/>").css({display:"flex", height:"100vh"})
-var CHAT = $("<div id='GAME_CHAT'>CHAT</div>").css({display:"flex", width:"300px", backgroundColor:"green"})
-var GAME = $("<div id='GAME_BODY'>GAME</div>").css({display:"flex", flex:1, backgroundColor:"blue"})
-var PANEL = $("<div id='GAME_PANEL'>PANEL</div>").css({display:"flex", width:"300px", backgroundColor:"red"})
+var CHAT = $("<div id='GAME_CHAT'/>").css({display:"flex", width:"300px", backgroundColor:"green"})
+var GAME = $("<div id='GAME_BODY'/>").css({display:"flex", flex:1, backgroundColor:"blue"})
+var PANEL = $("<div id='GAME_PANEL'/>").css({display:"flex", width:"300px", backgroundColor:"red"})
 GAME_BOX.append(CHAT).append(GAME).append(PANEL).appendTo("body")
 
-setChat = function()
+const GREEN_BG_URL = 'url("https://raw.githubusercontent.com/akrzyz/margonem_addons/master/green_background.png")'
+const BORDER_SIZE = "6px"
+
+let setChat = function()
 {
-    const GREEN_BG_URL = 'url("https://raw.githubusercontent.com/akrzyz/margonem_addons/master/green_background.png")'
-    const BORDER_SIZE = "6px"
     $("#GAME_CHAT").css({border:BORDER_SIZE +" double darkgoldenrod", background:GREEN_BG_URL})
     $("#chat")
     .removeAttr("style")
-    .css({position:"absolute", top:0, left:0, width:300, height:"100vh",
+    .css({position:"relative", top:0, left:0, width:300, height:"100vh",
           margin:BORDER_SIZE,
           background:GREEN_BG_URL})
     .appendTo("#GAME_CHAT")
 }
+
+let setPanel() = function()
+{
+    $("#GAME_PANEL").css({border:BORDER_SIZE +" double darkgoldenrod", background:GREEN_BG_URL})
+    $("#panel").css({position:relative,"left":0}).appendTo("#GAME_PANEL")
+}()
+//$("#centerbox").appendTo("#GAME_BODY")
+//$("#centerbox").appendTo("#GAME_BODY")
 g.loadQueue.push({fun:setChat,data:""})
-//$("#panel").appendTo("#GAME_PANEL")
-//$("#centerbox").appendTo("#GAME_BODY")
-//$("#centerbox").appendTo("#GAME_BODY")
+}()
 
-
-bindTo([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2"), $("#premiumbut"), $("#logoutbut")], $("#panel"))
+bindTo([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2"), $("#premiumbut"), $("#logoutbut"), $('#leorn1'), $('#leorn2')], $("#panel"))
 bindTo([$("#pvpmode"), $("#bchat"), $("#botloc"), $("#lagmeter")], $("#bottombar"))
 
 panelToggle = function(){
@@ -53,8 +61,8 @@ panelToggle = function(){
 	else{panelDir='+';	mapSizeX=786; }
 
 	$('#panel').animate({"left": panelDir+"=300px"}, "slow")
-	$('#leorn1').animate({"left": panelDir+"=274px"}, "slow").toggle()
-	$('#leorn2').animate({"left": panelDir+"=274px"}, "slow").toggle()
+//	$('#leorn1').animate({"left": panelDir+"=274px"}, "slow").toggle()
+//	$('#leorn2').animate({"left": panelDir+"=274px"}, "slow").toggle()
 	$('#corners img').slice(4,8).animate({"left": panelDir+"=274px"}, "slow")
 //	$('#corners img').slice(6,8).animate({"left": panelDir+"=274px"}, "slow")
 
