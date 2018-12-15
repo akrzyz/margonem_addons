@@ -30,14 +30,15 @@ setChat = function()
 {
     const GREEN_BG_URL = 'url("https://raw.githubusercontent.com/akrzyz/margonem_addons/master/green_background.png")'
     const BORDER_SIZE = "6px"
-    $("#GAME_CHAT").css({border:BORDER_SIZE +" double darkgoldenrod"})
+    $("#GAME_CHAT").css({border:BORDER_SIZE +" double darkgoldenrod", background:GREEN_BG_URL})
     $("#chat")
     .removeAttr("style")
     .css({position:"absolute", top:0, left:0, width:300, height:"100vh",
           margin:BORDER_SIZE,
           background:GREEN_BG_URL})
     .appendTo("#GAME_CHAT")
-}()
+}
+g.loadQueue.push(setChat)
 //$("#panel").appendTo("#GAME_PANEL")
 //$("#centerbox").appendTo("#GAME_BODY")
 //$("#centerbox").appendTo("#GAME_BODY")
