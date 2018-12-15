@@ -45,10 +45,10 @@ let setChat = function()
     .appendTo("#GAME_CHAT")
 }
 
-let setPanel() = function()
+let setPanel = function()
 {
     $("#GAME_PANEL").css({border:BORDER_SIZE +" double darkgoldenrod", background:GREEN_BG_URL})
-    $("#panel").css({position:relative,"left":0}).appendTo("#GAME_PANEL")
+    $("#panel").css({position:"relative","left":0}).appendTo("#GAME_PANEL")
 }()
 //$("#centerbox").appendTo("#GAME_BODY")
 //$("#centerbox").appendTo("#GAME_BODY")
