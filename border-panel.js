@@ -59,9 +59,10 @@ let setGame = function()
     $("#centerbox").appendTo("#GAME_BODY").css({position:"relative", top:0, left:0, width:GAME_WIDTH, height:GAME_HEIGHT})
     $("#base").css({width:GAME_WIDTH, height:GAME_HEIGHT})
     map.resizeView(GAME_WIDTH,GAME_HEIGHT)
-}()
+}
 
 g.loadQueue.push({fun:setChat,data:""})
+g.loadQueue.push({fun:setGame,data:""})
 })()
 
 panelToggle = function(){
