@@ -58,6 +58,7 @@ let setGame = function()
     $("#centerbox2").toggle() //chowa dziwne ramki
     $("#centerbox").appendTo("#GAME_BODY").css({position:"relative", top:0, left:0, width:GAME_WIDTH, height:GAME_HEIGHT})
     $("#base").css({width:GAME_WIDTH, height:GAME_HEIGHT})
+    $("#bottombar").css({position:"absolute", bottom:0, top:'unset'})
     map.resizeView(GAME_WIDTH,GAME_HEIGHT)
 }
 
