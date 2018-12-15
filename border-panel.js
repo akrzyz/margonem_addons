@@ -20,7 +20,10 @@ bindTo = function(elements, parent)
     }
 }
 
-function()
+bindTo([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2"), $("#premiumbut"), $("#logoutbut"), $('#leorn1'), $('#leorn2')], $("#panel"))
+bindTo([$("#pvpmode"), $("#bchat"), $("#botloc"), $("#lagmeter")], $("#bottombar"))
+
+(function()
 {
 var GAME_BOX = $("<div id='GAME_BOX'/>").css({display:"flex", height:"100vh"})
 var CHAT = $("<div id='GAME_CHAT'/>").css({display:"flex", width:"300px", backgroundColor:"green"})
@@ -50,10 +53,7 @@ let setPanel() = function()
 //$("#centerbox").appendTo("#GAME_BODY")
 //$("#centerbox").appendTo("#GAME_BODY")
 g.loadQueue.push({fun:setChat,data:""})
-}()
-
-bindTo([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2"), $("#premiumbut"), $("#logoutbut"), $('#leorn1'), $('#leorn2')], $("#panel"))
-bindTo([$("#pvpmode"), $("#bchat"), $("#botloc"), $("#lagmeter")], $("#bottombar"))
+})()
 
 panelToggle = function(){
 
