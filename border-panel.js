@@ -50,8 +50,17 @@ let setPanel = function()
     $("#GAME_PANEL").css({border:BORDER_SIZE +" double darkgoldenrod", background:GREEN_BG_URL})
     $("#panel").css({position:"relative","left":0}).appendTo("#GAME_PANEL")
 }()
-//$("#centerbox").appendTo("#GAME_BODY")
-//$("#centerbox").appendTo("#GAME_BODY")
+
+let setGame = function()
+{
+    const GAME_WIDTH = $("#GAME_BODY").width()
+    const GAME_HEIGHT = $("#GAME_BODY").height()
+    $("#centerbox2").toggle() //chowa dziwne ramki
+    $("#centerbox").appendTo("#GAME_BODY").css({position:"relative", top:0, left:0, width:GAME_WIDTH, height:GAME_HEIGHT})
+    $("#base").css({width:GAME_WIDTH, height:GAME_HEIGHT})
+    map.resizeView(GAME_WIDTH,GAME_HEIGHT)
+}()
+
 g.loadQueue.push({fun:setChat,data:""})
 })()
 
