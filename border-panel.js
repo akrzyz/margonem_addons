@@ -38,7 +38,7 @@ setChat = function()
           background:GREEN_BG_URL})
     .appendTo("#GAME_CHAT")
 }
-g.loadQueue.push(setChat)
+g.loadQueue.push({fun:setChat,data:""})
 //$("#panel").appendTo("#GAME_PANEL")
 //$("#centerbox").appendTo("#GAME_BODY")
 //$("#centerbox").appendTo("#GAME_BODY")
