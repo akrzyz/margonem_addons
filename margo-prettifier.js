@@ -12,7 +12,7 @@ bindTo = function(elements, parent)
 }
 
 bindTo([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2"), $("#premiumbut"), $("#logoutbut"), $('#leorn1'), $('#leorn2')], $("#panel"));
-bindTo([$("#pvpmode"), $("#bchat"), $("#botloc"), $("#lagmeter")], $("#bottombar"));
+bindTo([$("#pvpmode"), $("#bchat"), $("#botloc"), $("#lagmeter"), $("#mailnotifier")], $("#bottombar"));
 
 var GAME_BOX = $("<div id='GAME_BOX'/>").css({display:"flex", height:"100vh"})
 var CHAT = $("<div id='GAME_CHAT'/>").css({display:"flex", width:"300px", backgroundColor:"green"})
