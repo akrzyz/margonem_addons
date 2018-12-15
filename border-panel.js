@@ -10,7 +10,7 @@ var panelDir='-'
 var mapSizeX = 512
 var chatImg = [$('#chat').css('background'),'url("http://img266.imageshack.us/img266/395/chatpanel3.gif") repeat scroll 0 0 transparent']
 
-function bindTo(elements, parent)
+bindTo = function(elements, parent)
 {
     for(var i in elements)
     {
@@ -20,8 +20,8 @@ function bindTo(elements, parent)
     }
 }
 
-bindTo([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2"), $("#premiumbut"), $("#logoutbut"), $('#leorn1'), $('#leorn2')], $("#panel"))
-bindTo([$("#pvpmode"), $("#bchat"), $("#botloc"), $("#lagmeter")], $("#bottombar"))
+bindTo([$("#stats"), $("#base3"), $("#gold"), $("#exp1"), $("#exp2"), $("#life1"), $("#life2"), $("#premiumbut"), $("#logoutbut"), $('#leorn1'), $('#leorn2')], $("#panel"));
+bindTo([$("#pvpmode"), $("#bchat"), $("#botloc"), $("#lagmeter")], $("#bottombar"));
 
 (function()
 {
