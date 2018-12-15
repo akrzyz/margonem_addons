@@ -10,7 +10,7 @@ var panelDir='-'
 var mapSizeX = 512
 var chatImg = [$('#chat').css('background'),'url("http://img266.imageshack.us/img266/395/chatpanel3.gif") repeat scroll 0 0 transparent']
 
-bindTo = function(elements, parent)
+function bindTo(elements, parent)
 {
     for(var i in elements)
     {
